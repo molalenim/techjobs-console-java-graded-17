@@ -10,7 +10,10 @@ public class TechJobs {
 
     static Scanner in = new Scanner(System.in);
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
+
+        ArrayList<HashMap<String, String>> jobData = JobData.findAll(); // Retrieve all job data
+        printJobs(jobData); // Print the retrieved job data
 
         // Initialize our field map with key/name pairs
         HashMap<String, String> columnChoices = new HashMap<>();
@@ -112,15 +115,21 @@ public class TechJobs {
                 validChoice = true;
             }
 
-        } while(!validChoice);
+        } while (!validChoice);
 
         return choiceKeys[choiceIdx];
     }
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        for (HashMap<String, String> job : someJobs) {
+            for (Map.Entry<String, String> entry : job.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
+                System.out.println(key + ": " + value);
+            }
 
-        System.out.println("printJobs is not implemented yet");
-        //let me test that the autograder is working properly
+            System.out.println(); // Print an empty line between jobs
+        }
     }
 }
