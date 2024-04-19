@@ -13,7 +13,7 @@ public class TechJobs {
     public static void main(String[] args) {
 
         ArrayList<HashMap<String, String>> jobData = JobData.findAll(); // Retrieve all job data
-        printJobs(jobData); // Print the retrieved job data
+        //printJobs(jobData); // Print the retrieved job data
 
         // Initialize our field map with key/name pairs
         HashMap<String, String> columnChoices = new HashMap<>();
@@ -63,7 +63,6 @@ public class TechJobs {
                 // What is their search term?
                 System.out.println("\nSearch term:");
                 String searchTerm = in.nextLine();
-
                 if (searchField.equals("all")) {
                     printJobs(JobData.findByValue(searchTerm));
                 } else {
@@ -122,14 +121,27 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+
+
         for (HashMap<String, String> job : someJobs) {
+
+            System.out.println();
+            printAsterisk();
             for (Map.Entry<String, String> entry : job.entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue();
-                System.out.println(key + ": " + value);
-            }
 
-            System.out.println(); // Print an empty line between jobs
+                System.out.println(key + ": " + value);
+
+            }
+            printAsterisk();
+
         }
     }
+
+    private static void printAsterisk() {
+        System.out.println("*".repeat(Math.max(0, 5)));
+    }
 }
+
+
