@@ -70,9 +70,9 @@ public class JobData {
 
         for (HashMap<String, String> row : allJobs) {
 
-            String aValue = row.get(column);
-
-            if (aValue.contains(value)) {
+            String columnValue = row.get(column);
+            //check if column value has search value (case-insensitive)
+            if (columnValue != null && columnValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
             }
         }
