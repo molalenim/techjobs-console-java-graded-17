@@ -5,10 +5,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -95,7 +92,28 @@ public class JobData {
         loadData();
 
         // TODO - implement this method
-        return null;
+        // List to store the search results
+        ArrayList<HashMap<String, String>> results = new ArrayList<>();
+
+        // Iterate over each job
+        for (HashMap<String, String> job : allJobs) {
+            // Iterate over each entry in the job
+            for (Map.Entry<String, String> entry : job.entrySet()) {
+                String column = entry.getKey();
+                String columnValue = entry.getValue();
+                // Check if the column value contains the search term
+                if (columnValue != null && columnValue.toLowerCase().contains(value.toLowerCase())) {
+                    // Check if the job is not already in the results list to avoid duplicates
+                    if (!results.contains(job)) {
+                        results.add(job);
+                    }
+                    // Break out of the inner loop once the search term is found in one column
+                    break;
+                }
+            }
+        }
+
+        return results;
     }
 
     /**
